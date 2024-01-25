@@ -9,6 +9,10 @@ runs:
       shell: bash
       run: |
         cat "${{ inputs.project-path }}/.tool-versions"
+    - name: echo ls
+      shell: bash
+      run: |
+        ls -al
     - name: echo version
       shell: bash
       run: echo $(./scripts/tool-version ${{ inputs.project-path }} nodejs)
