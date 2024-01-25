@@ -14,7 +14,7 @@ runs:
       run: grep 'nodejs' "${{ inputs.project-path }}/.tool-versions"
     - name: echo node version
       shell: bash
-      run: grep 'nodejs' "${{ inputs.project-path }}/.tool-versions" | grep -oEi '\d+.\d+.\d+'
+      run: 'grep "nodejs" "${{ inputs.project-path }}/.tool-versions" | grep -oEi "\d+.\d+.\d+"'
     - name: set node version
       shell: bash
       run: echo "NODE_VERSION=$(grep 'nodejs' "${{ inputs.project-path }}/.tool-versions" | grep -oEi '\d+.\d+.\d+')" >> "$GITHUB_ENV"
