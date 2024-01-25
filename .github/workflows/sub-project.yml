@@ -12,16 +12,7 @@ jobs:
       run:
         working-directory: ./sub-project
     steps:
-      - uses: actions/checkout@v3
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.2.2'
-          bundler-cache: true
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18.16.0
-          cache: 'npm'
-          cache-dependency-path: 'sub-project/package-lock.json'
+      - uses: ./.github/actions/reviews-admins/run-rake
       - name: run tests
         run:  ./go app:test
   build:
