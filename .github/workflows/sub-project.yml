@@ -7,7 +7,7 @@ on:
   push:
     paths:
       - '.github/workflows/sub-project.yml'
-      - '.github/actions/reviews-admins/**'
+      - '.github/actions/sub-project/**'
       - 'sub-project/**'
 
 jobs:
@@ -19,8 +19,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/reviews-admins/run-rake
-        with:
-          working-directory: './sub-project'
       - name: run tests
         run:  ./go app:test
   build:
@@ -32,7 +30,5 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/reviews-admins/run-rake
-        with:
-          working-directory: './sub-project'
       - name: run tests
         run:  ./go app:build
