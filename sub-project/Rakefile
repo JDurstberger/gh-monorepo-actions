@@ -7,3 +7,7 @@ namespace :app do
     Rake::Task["app:install"].invoke
   end
 end
+
+task :print, [:environment] do |_, args|
+  puts "PRINTING in #{args[:environment]}"
+end
