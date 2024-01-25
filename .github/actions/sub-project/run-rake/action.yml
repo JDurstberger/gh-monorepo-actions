@@ -15,14 +15,15 @@ runs:
         ls -al
     - name: echo version
       shell: bash
-      run: echo $(./scripts/tool-version.sh ${{ inputs.project-path }} nodejs)
+      run: |
+        ./scripts/tool-version.sh ${{ inputs.project-path }} nodejs
     - name: set node version
       shell: bash
-      run: echo "NODE_VERSION=$(grep 'nodejs' "${{ inputs.project-path }}/.tool-versions" | grep -oEi '\d+.\d+.\d+')" >> "$GITHUB_ENV"
+      run: echo "NODE_VERSION=$(./scripts/tool-version.sh ${{ inputs.project-path }} nodejs)" >> "$GITHUB_ENV"
     - name: set ruby version
       shell: bash
       run: |
-        echo "RUBY_VERSION=$(grep 'ruby' "${{ inputs.project-path }}/.tool-versions" | grep -oEi '\d+.\d+.\d+')" >> "$GITHUB_ENV"
+        echo "RUBY_VERSION=$(./scripts/tool-version.sh ${{ inputs.project-path }} ruby)" >> "$GITHUB_ENV"
     - name: print versions
       shell: bash
       run: |
