@@ -2,6 +2,7 @@ name: 'Run Rake'
 inputs:
   project-path:
     required: true
+
 runs:
   using: "composite"
   steps:
