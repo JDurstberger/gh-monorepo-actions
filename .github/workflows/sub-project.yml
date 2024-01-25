@@ -9,7 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        shell: bash
         working-directory: ./sub-project
     steps:
       - uses: actions/checkout@v3
@@ -21,5 +20,6 @@ jobs:
         with:
           node-version: 18.16.0
           cache: 'npm'
+          cache-dependency-path: 'sub-project/package-lock.json'
       - name: run tests
         run:  go app:test
