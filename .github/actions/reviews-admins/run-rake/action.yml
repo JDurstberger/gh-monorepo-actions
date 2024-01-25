@@ -2,6 +2,12 @@ name: 'Run Rake'
 runs:
   using: "composite"
   steps:
+    - run: |
+        echo "{NODE_VERSION}=$(grep 'nodejs' "${PROJECT_DIR}/.tool-versions" | grep -oEi '\d+.\d+.\d+')" >> "$GITHUB_ENV"
+    - run: |
+        echo "{RUBY_VERSION}=$(grep 'ruby' "${PROJECT_DIR}/.tool-versions" | grep -oEi '\d+.\d+.\d+')" >> "$GITHUB_ENV"
+    - run: |
+        echo $RUBY_VERSION && echo $NODE_VERSION
     - uses: ruby/setup-ruby@v1
       with:
         ruby-version: '3.2.2'
@@ -10,4 +16,4 @@ runs:
       with:
         node-version: 18.16.0
         cache: 'npm'
-        cache-dependency-path: '$PROJECT_NAME/package-lock.json'
+        cache-dependency-path: 'sub-project/package-lock.json'
