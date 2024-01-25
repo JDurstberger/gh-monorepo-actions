@@ -12,6 +12,7 @@ jobs:
       run:
         working-directory: ./sub-project
     steps:
+      - uses: actions/checkout@v3
       - uses: ./.github/actions/reviews-admins/run-rake
       - name: run tests
         run:  ./go app:test
