@@ -1,19 +1,17 @@
 name: 'Run Rake'
-
+env:
+  PROJECT_PATH: 'sub-project'
 runs:
-  defaults:
-    run:
-      working-directory: './sub-project'
   using: "composite"
   steps:
     - name: set node version
       shell: bash
       run: |
-        echo "{NODE_VERSION}=$(grep 'nodejs' ".tool-versions" | grep -oEi '\d+.\d+.\d+')" >> "$GITHUB_ENV"
+        echo "{NODE_VERSION}=$(grep 'nodejs' "$PROJECT_PATH/.tool-versions" | grep -oEi '\d+.\d+.\d+')" >> "$GITHUB_ENV"
     - name: set ruby version
       shell: bash
       run: |
-        echo "{RUBY_VERSION}=$(grep 'ruby' ".tool-versions" | grep -oEi '\d+.\d+.\d+')" >> "$GITHUB_ENV"
+        echo "{RUBY_VERSION}=$(grep 'ruby' "$PROJECT_PATH/.tool-versions" | grep -oEi '\d+.\d+.\d+')" >> "$GITHUB_ENV"
     - name: print versions
       shell: bash
       run: |

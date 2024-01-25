@@ -13,9 +13,6 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: './$PROJECT_NAME'
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/sub-project/run-rake
