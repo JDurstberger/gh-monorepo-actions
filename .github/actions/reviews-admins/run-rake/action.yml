@@ -1,9 +1,9 @@
 name: 'Run Rake'
+inputs:
+  working-directory:
+    required: true
 runs:
   using: "composite"
-  inputs:
-    working-directory:
-      required: true
   defaults:
     run:
       working-directory: ${{ inputs.working-directory }}
