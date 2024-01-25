@@ -25,4 +25,4 @@ runs:
       with:
         node-version: ${{ env.NODE_VERSION }}
         cache: 'npm'
-        cache-dependency-path: 'sub-project/package-lock.json'
+        cache-dependency-path: ${{ inputs.project-path}}/package-lock.json

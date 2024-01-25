@@ -18,7 +18,7 @@ jobs:
         working-directory: ${{ env.PROJECT_PATH }}
     steps:
       - uses: actions/checkout@v3
-      - uses: ./.github/actions/sub-project/run-rake
+      - uses: ./.github/actions/sub-project/prepare
         with:
           project-path: ${{ env.PROJECT_PATH }}
       - name: run tests
@@ -31,7 +31,7 @@ jobs:
         working-directory: ./sub-project
     steps:
       - uses: actions/checkout@v3
-      - uses: ./.github/actions/sub-project/run-rake
+      - uses: ./.github/actions/sub-project/prepare
         with:
           project-path: ${{ env.PROJECT_PATH }}
       - name: run tests
