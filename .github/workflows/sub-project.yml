@@ -1,16 +1,20 @@
 name: Reviews Admin Workflow
+
+env:
+  PROJECT_NAME: 'sub-project'
+
 on:
   push:
     paths:
-      - '.github/workflows/sub-project.yml'
-      - 'sub-project/**'
+      - '.github/workflows/$PROJECT_NAME.yml'
+      - '$PROJECT_NAME/**'
 
 jobs:
   test:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./sub-project
+        working-directory: './$PROJECT_NAME'
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/reviews-admins/run-rake
@@ -24,14 +28,6 @@ jobs:
         working-directory: ./sub-project
     steps:
       - uses: actions/checkout@v3
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.2.2'
-          bundler-cache: true
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18.16.0
-          cache: 'npm'
-          cache-dependency-path: 'sub-project/package-lock.json'
+      - uses: ./.github/actions/reviews-admins/run-rake
       - name: run tests
         run:  ./go app:build
