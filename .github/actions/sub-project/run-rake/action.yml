@@ -5,6 +5,14 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: echo .tools
+      shell: bash
+      run: |
+        cat "${{ inputs.project-path }}/.tool-versions"
+    - name: echo node version
+      shell: bash
+      run: |
+        grep 'nodejs' "${{ inputs.project-path }}/.tool-versions" | grep -oEi '\d+.\d+.\d+'
     - name: set node version
       shell: bash
       run: |
