@@ -1,7 +1,12 @@
 name: 'Run Rake'
-inputs:
-  working-directory:
-    required: true
+
+on:
+  workflow_call:
+    inputs:
+      working-directory:
+        required: true
+        type: string
+
 defaults:
   run:
     working-directory: ${{ inputs.working-directory }}
