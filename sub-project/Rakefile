@@ -1,0 +1,9 @@
+require 'rake_npm'
+
+namespace :app do
+  RakeNPM.define_install_task()
+
+  RakeNPM.define_script_tasks() do |t, args|
+    Rake::Task["app:install"].invoke
+  end
+end
