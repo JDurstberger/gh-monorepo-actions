@@ -2,11 +2,11 @@ name: 'Run Rake'
 inputs:
   working-directory:
     required: true
+defaults:
+  run:
+    working-directory: ${{ inputs.working-directory }}
 runs:
   using: "composite"
-  defaults:
-    run:
-      working-directory: ${{ inputs.working-directory }}
   steps:
     - name: set node version
       shell: bash
