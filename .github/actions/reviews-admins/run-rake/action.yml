@@ -10,4 +10,4 @@ runs:
       with:
         node-version: 18.16.0
         cache: 'npm'
-        cache-dependency-path: 'sub-project/package-lock.json'
+        cache-dependency-path: '$PROJECT_NAME/package-lock.json'

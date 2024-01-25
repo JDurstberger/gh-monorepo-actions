@@ -6,8 +6,8 @@ env:
 on:
   push:
     paths:
-      - '.github/workflows/$PROJECT_NAME.yml'
-      - '$PROJECT_NAME/**'
+      - '.github/workflows/sub-project.yml'
+      - 'sub-project/**'
 
 jobs:
   test:
