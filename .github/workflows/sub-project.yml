@@ -7,7 +7,7 @@ on:
   push:
     paths:
       - '.github/workflows/sub-project.yml'
-      - '.github/actions/review-admins/**'
+      - '.github/actions/review-admins/**/**'
       - 'sub-project/**'
 
 jobs:
