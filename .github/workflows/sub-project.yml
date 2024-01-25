@@ -6,9 +6,9 @@ env:
 on:
   push:
     paths:
-      - '.github/workflows/sub-project.yml'
-      - '.github/actions/sub-project/**'
-      - 'sub-project/**'
+      - .github/workflows/sub-project.yml
+      - .github/actions/${{ env.PROJECT_PATH }}/**
+      - ${{ env.PROJECT_PATH }}/**
 
 jobs:
   test:
