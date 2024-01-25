@@ -23,4 +23,4 @@ jobs:
           cache: 'npm'
           cache-dependency-path: 'sub-project/package-lock.json'
       - name: run tests
-        run:  go app:test
+        run:  ./go app:test
