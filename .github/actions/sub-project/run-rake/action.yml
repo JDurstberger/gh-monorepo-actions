@@ -8,21 +8,21 @@ runs:
     - name: set node version
       shell: bash
       run: |
-        echo "{NODE_VERSION}=$(grep 'nodejs' "${{ inputs.project-path }}/.tool-versions" | grep -oEi '\d+.\d+.\d+')" >> "$GITHUB_ENV"
+        echo "NODE_VERSION=$(grep 'nodejs' "${{ inputs.project-path }}/.tool-versions" | grep -oEi '\d+.\d+.\d+')" >> "$GITHUB_ENV"
     - name: set ruby version
       shell: bash
       run: |
-        echo "{RUBY_VERSION}=$(grep 'ruby' "${{ inputs.project-path }}/.tool-versions" | grep -oEi '\d+.\d+.\d+')" >> "$GITHUB_ENV"
+        echo "RUBY_VERSION=$(grep 'ruby' "${{ inputs.project-path }}/.tool-versions" | grep -oEi '\d+.\d+.\d+')" >> "$GITHUB_ENV"
     - name: print versions
       shell: bash
       run: |
         echo ${{ env.RUBY_VERSION }} && echo ${{ env.NODE_VERSION }}
     - uses: ruby/setup-ruby@v1
       with:
-        ruby-version: '3.2.2'
+        ruby-version: ${{ env.RUBY_VERSION }}
         bundler-cache: true
     - uses: actions/setup-node@v4
       with:
-        node-version: 18.16.0
+        node-version: ${{ env.NODE_VERSION }}
         cache: 'npm'
         cache-dependency-path: 'sub-project/package-lock.json'
