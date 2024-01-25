@@ -2,6 +2,7 @@ name: Reviews Admin Workflow
 on:
   push:
     paths:
+      - '.github/workflows/sub-project.yml'
       - 'sub-project/**'
 
 jobs:
