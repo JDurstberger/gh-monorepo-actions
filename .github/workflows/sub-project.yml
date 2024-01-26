@@ -28,7 +28,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           if-no-files-found: error
-          name: sub-project/api
+          name: sub-project-api
           path: |
             ${{ env.PROJECT_PATH }}/api/build
   use-artifacts:
@@ -37,6 +37,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/download-artifact@v4
+        with:
+          name: sub-project-api
+          path: sub-project/api/build
       - name: run
         run: ls -al
       - name: run
