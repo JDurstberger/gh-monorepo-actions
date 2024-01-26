@@ -12,29 +12,28 @@ on:
       - 'sub-project/**'
 
 jobs:
-  test:
+  create-artifacts:
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ${{ env.PROJECT_PATH }}
     steps:
       - uses: actions/checkout@v3
-      - uses: ./.github/actions/sub-project/prepare
-        with:
-          project-path: ${{ env.PROJECT_PATH }}
       - name: run
-        run:  ./go print[${{ env.ENVIRONMENT }}]
-
-#  build:
-#    needs: [ test ]
-#    runs-on: ubuntu-latest
-#    defaults:
-#      run:
-#        working-directory: ./sub-project
-#    steps:
-#      - uses: actions/checkout@v3
-#      - uses: ./.github/actions/sub-project/prepare
-#        with:
-#          project-path: ${{ env.PROJECT_PATH }}
-#      - name: run tests
-#        run:  ./go app:build
+        run: |
+          mkdir build
+          echo "Hello World" > build/hello.txt
+      - name: upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          if-no-files-found: error
+          name: reviews-admin-api
+          path: |
+            ${{ env.PROJECT_PATH }}/build
+  use-artifacts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/download-artifact@v4
+      - name: run
+        run: ls -al
