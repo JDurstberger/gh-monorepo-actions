@@ -39,8 +39,6 @@ jobs:
       - name: run
         run: ls -al
       - name: run
-        run: ls -al artifact
-      - name: run
         run: ls -al sub-project
       - name: run
         run: ls -al sub-project/artifact
