@@ -12,37 +12,51 @@ on:
       - 'sub-project/**'
 
 jobs:
-  create-artifacts:
+  build-image-development:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ${{ env.PROJECT_PATH }}
+    environment: development
     steps:
-      - uses: actions/checkout@v3
       - name: run
-        run: |
-          mkdir api
-          mkdir api/build
-          echo "Hello World" > api/build/hello.txt
-      - name: upload artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          if-no-files-found: error
-          name: sub-project-api
-          path: |
-            ${{ env.PROJECT_PATH }}/api/build
-  use-artifacts:
-    needs: [ create-artifacts ]
+        shell: bash
+        run: echo "build image"
+  publish-image-development:
+    needs: [ build-image-development ]
     runs-on: ubuntu-latest
+    environment: development
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/download-artifact@v4
-        with:
-          name: sub-project-api
-          path: sub-project/api/build
       - name: run
-        run: ls -al
+        shell: bash
+        run: echo "push image"
+  build-image-staging:
+    needs: [ publish-image-development ]
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
       - name: run
-        run: ls -al sub-project
+        shell: bash
+        run: echo "build image"
+  publish-image-staging:
+    needs: [ build-image-staging ]
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
       - name: run
-        run: ls -al sub-project/api
+        shell: bash
+        run: echo "push image"
+  build-image-production:
+    needs: [ publish-image-staging ]
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: run
+        shell: bash
+        run: echo "build image"
+  publish-image-production:
+    needs: [ build-image-production ]
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: run
+        shell: bash
+        run: echo "push image"
+
