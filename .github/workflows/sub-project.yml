@@ -18,6 +18,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/some-action
+        with:
+          path: sub-project
       - name: run
         shell: bash
         run: echo "build image"
