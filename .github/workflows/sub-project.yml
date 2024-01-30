@@ -16,47 +16,49 @@ jobs:
     runs-on: ubuntu-latest
     environment: development
     steps:
+      - uses: actions/checkout@v4
+      - uses: ./github/actions/some-action
       - name: run
         shell: bash
         run: echo "build image"
-  publish-image-development:
-    needs: [ build-image-development ]
-    runs-on: ubuntu-latest
-    environment: development
-    steps:
-      - name: run
-        shell: bash
-        run: echo "push image"
-  build-image-staging:
-    needs: [ publish-image-development ]
-    runs-on: ubuntu-latest
-    environment: staging
-    steps:
-      - name: run
-        shell: bash
-        run: echo "build image"
-  publish-image-staging:
-    needs: [ build-image-staging ]
-    runs-on: ubuntu-latest
-    environment: staging
-    steps:
-      - name: run
-        shell: bash
-        run: echo "push image"
-  build-image-production:
-    needs: [ publish-image-staging ]
-    runs-on: ubuntu-latest
-    environment: production
-    steps:
-      - name: run
-        shell: bash
-        run: echo "build image"
-  publish-image-production:
-    needs: [ build-image-production ]
-    runs-on: ubuntu-latest
-    environment: production
-    steps:
-      - name: run
-        shell: bash
-        run: echo "push image"
-
+#  publish-image-development:
+#    needs: [ build-image-development ]
+#    runs-on: ubuntu-latest
+#    environment: development
+#    steps:
+#      - name: run
+#        shell: bash
+#        run: echo "push image"
+#  build-image-staging:
+#    needs: [ publish-image-development ]
+#    runs-on: ubuntu-latest
+#    environment: staging
+#    steps:
+#      - name: run
+#        shell: bash
+#        run: echo "build image"
+#  publish-image-staging:
+#    needs: [ build-image-staging ]
+#    runs-on: ubuntu-latest
+#    environment: staging
+#    steps:
+#      - name: run
+#        shell: bash
+#        run: echo "push image"
+#  build-image-production:
+#    needs: [ publish-image-staging ]
+#    runs-on: ubuntu-latest
+#    environment: production
+#    steps:
+#      - name: run
+#        shell: bash
+#        run: echo "build image"
+#  publish-image-production:
+#    needs: [ build-image-production ]
+#    runs-on: ubuntu-latest
+#    environment: production
+#    steps:
+#      - name: run
+#        shell: bash
+#        run: echo "push image"
+#
