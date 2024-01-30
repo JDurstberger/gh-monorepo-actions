@@ -17,7 +17,7 @@ jobs:
     environment: development
     steps:
       - uses: actions/checkout@v4
-      - uses: ./github/actions/some-action
+      - uses: ./.github/actions/some-action
       - name: run
         shell: bash
         run: echo "build image"
