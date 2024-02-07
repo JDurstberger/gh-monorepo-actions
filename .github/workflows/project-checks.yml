@@ -1,0 +1,12 @@
+name: Project Checks
+
+on:
+  workflow_call:
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: run
+        shell: bash
+        run: echo "checks"

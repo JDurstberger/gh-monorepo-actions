@@ -1,8 +1,0 @@
-{
-  "compilerOptions": {
-    "outDir": "build",
-    "target": "es2017",
-    "module": "CommonJS"
-  },
-  "include": ["src"],
-}
