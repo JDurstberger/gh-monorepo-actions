@@ -4,7 +4,19 @@ on:
   workflow_call:
 
 jobs:
-  triage:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: run
+        shell: bash
+        run: echo "lint"
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: run
+        shell: bash
+        run: echo "test"
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: run
