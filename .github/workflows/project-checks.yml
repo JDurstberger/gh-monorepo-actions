@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: run
         shell: bash
-        run: echo "test"
+        run: asdfalihfa
   build:
     runs-on: ubuntu-latest
     steps:
