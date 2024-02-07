@@ -1,4 +1,1 @@
 EXAMPLE PROJECT
-
-
-ads
