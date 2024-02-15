@@ -5,14 +5,41 @@ on:
     branches:
       - main
 
-jobs:
-  checks:
-    uses: ./.github/workflows/project-checks.yml
+#jobs:
+#  checks:
+#    uses: ./.github/workflows/project-checks.yml
+#
+#  deploy:
+#    needs: [checks]
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: run
+#        shell: bash
+#        run: echo "deploy"
 
-  deploy:
-    needs: [checks]
+jobs:
+  development-1:
     runs-on: ubuntu-latest
+    environment: development
     steps:
       - name: run
         shell: bash
-        run: echo "deploy"
+        run: echo "development-1"
+
+  staging-1:
+    needs: [development-1]
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - name: run
+        shell: bash
+        run: echo "staging-1"
+
+  staging-2:
+    needs: [development-1]
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - name: run
+        shell: bash
+        run: echo "staging-2"
