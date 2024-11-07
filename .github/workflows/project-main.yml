@@ -12,22 +12,20 @@ jobs:
     steps:
       - name: run
         shell: bash
-        run: echo "development-1"
+        run: mkdir -p artifacts/some-service && touch artifacts/some-service/Dockerfile
+      - uses: actions/upload-artifact@v4
+        with:
+          name: service
+          path: artifacts/some-service
 
   staging-1:
     needs: [development-1]
     runs-on: ubuntu-latest
     environment: staging
     steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: service
       - name: run
         shell: bash
-        run: echo "staging-1"
-
-  staging-2:
-    needs: [development-1]
-    runs-on: ubuntu-latest
-    environment: staging
-    steps:
-      - name: run
-        shell: bash
-        run: echo "staging-2"
+        run: ls -l
