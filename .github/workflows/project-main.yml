@@ -8,7 +8,6 @@ on:
 jobs:
   development-1:
     runs-on: ubuntu-latest
-    environment: development
     steps:
       - name: run
         shell: bash
@@ -21,11 +20,11 @@ jobs:
   staging-1:
     needs: [development-1]
     runs-on: ubuntu-latest
-    environment: staging
     steps:
       - uses: actions/download-artifact@v4
         with:
           name: service
+          path: artifacts/some-service
       - name: run
         shell: bash
-        run: ls -l
+        run: ls -l && ls -l artifacts && ls -l artifacts/some-service
