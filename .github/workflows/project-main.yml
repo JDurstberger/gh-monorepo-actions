@@ -17,6 +17,7 @@ jobs:
           path: ./dist
 
   deploy:
+    needs: upload
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
