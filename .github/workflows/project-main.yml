@@ -6,25 +6,22 @@ on:
       - main
 
 jobs:
-  development-1:
+  upload:
     runs-on: ubuntu-latest
     steps:
-      - name: run
-        shell: bash
-        run: mkdir -p artifacts/some-service && touch artifacts/some-service/Dockerfile
+      - name: Checkout
+        uses: actions/checkout@v3
       - uses: actions/upload-artifact@v4
         with:
-          name: service
-          path: artifacts/some-service
+          name: website
+          path: ./dist
 
-  staging-1:
-    needs: [development-1]
+  deploy:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - uses: actions/download-artifact@v4
         with:
-          name: service
-          path: artifacts/some-service
-      - name: run
-        shell: bash
-        run: ls -l && ls -l artifacts && ls -l artifacts/some-service
+          name: website
+      - run: ls -al
+      - run: ls -al ./dist
