@@ -24,6 +24,10 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: lambda
+          path: ./lambda.zip
+      - uses: actions/download-artifact@v4
+        with:
+          name: lambda
           path: ./build/lambda.zip
       - run: ls -al
       - run: ls -al ./download
