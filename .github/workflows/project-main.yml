@@ -29,4 +29,4 @@ jobs:
           name: lambda
           path: ./build/lambda.zip
       - run: ls -al
-      - run: ls -al ./download
+      - run: ls -al ./build
