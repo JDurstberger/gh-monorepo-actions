@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v3
       - uses: actions/upload-artifact@v4
         with:
-          name: website
+          name: lambda
           path: ./build/lambda.zip
 
   deploy:
@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/download-artifact@v4
         with:
-          name: website
+          name: lambda
           path: ./build/lambda.zip
       - run: ls -al
       - run: ls -al ./download
