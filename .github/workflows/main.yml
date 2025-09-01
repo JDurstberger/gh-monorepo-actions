@@ -10,10 +10,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-#      - uses: ./.github/actions/asdf-cached-install
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 22.x
+      - uses: ./.github/actions/asdf-cached-install
+#      - uses: actions/setup-node@v3
+#        with:
+#          node-version: 22.x
+      - name: Configure asdf environment
+        run: |
+          echo "PATH=$HOME/.asdf/shims:$HOME/.asdf/bin:$PATH" >> $GITHUB_ENV
       - name: Setup Expo and EAS
         uses: expo/expo-github-action@v8
         with:
