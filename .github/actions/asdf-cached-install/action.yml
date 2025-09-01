@@ -1,0 +1,13 @@
+name: Install tools with asdf
+
+runs:
+  using: "composite"
+  steps:
+    - uses: asdf-vm/actions/setup@9cd779f40fe38688dd19505ccbc4eaaf018b44e7
+    - id: cache
+      uses: actions/cache@v4
+      with:
+        path: ~/.asdf
+        key: asdf-${{ hashFiles('**/.tool-versions') }}
+    - if: steps.cache.outputs.cache-hit != 'true'
+      uses: asdf-vm/actions/install@9cd779f40fe38688dd19505ccbc4eaaf018b44e7
